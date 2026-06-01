@@ -9,8 +9,8 @@ const montserrat = Montserrat({
 });
 
 export const metadata: Metadata = {
-  title: "Buy Furniture Online for Home and Office | Primewood",
-  description: "Transforming spaces into beautiful homes and productive offices. Explore India's largest furniture brand with a legacy of trust and quality.",
+  title: "Buy Furniture Online for Home and Office | Primewood Industries Private Limited",
+  description: "Transforming spaces into beautiful homes and productive offices. Explore India's premium furniture brand with a legacy of trust and quality.",
 };
 
 export default function RootLayout({

@@ -43,9 +43,23 @@ export function Footer() {
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10">
                   <div className="lg:col-span-2">
                       <Link href="/" className="flex items-center space-x-2 mb-6">
-                          <span className="text-3xl font-extrabold tracking-tight text-white">Primewood</span>
+                          <span className="text-2xl font-black text-white">Primewood Industries</span>
                       </Link>
-                      <p className="text-gray-400 mb-6 text-sm leading-relaxed max-w-sm">Transforming spaces into beautiful homes and productive offices. Explore India's largest furniture brand with a legacy of trust and quality.</p>
+                      <p className="text-gray-400 mb-4 text-sm leading-relaxed max-w-sm">Transforming spaces into beautiful homes and productive offices. High-quality furniture with a legacy of trust and excellence.</p>
+                      <div className="text-gray-400 text-xs space-y-2 mb-6 max-w-sm">
+                        <p className="flex items-start gap-2">
+                          <i className="fas fa-map-marker-alt text-primary mt-1 flex-shrink-0"></i>
+                          <span>Block Milkat No.4392, Jadhav Wasti, Hadapsar-Saswad Road, Wadki, Pune, Maharashtra - 412308</span>
+                        </p>
+                        <p className="flex items-center gap-2">
+                          <i className="fas fa-phone-alt text-primary flex-shrink-0"></i>
+                          <span>+91 94234 53461</span>
+                        </p>
+                        <p className="flex items-center gap-2">
+                          <i className="fas fa-envelope text-primary flex-shrink-0"></i>
+                          <span>info@primewoodindustries.com</span>
+                        </p>
+                      </div>
                       <div className="flex space-x-4">
                           <Link href="#" className="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-primary hover:text-white transition"><i className="fab fa-facebook-f"></i></Link>
                           <Link href="#" className="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-primary hover:text-white transition"><i className="fab fa-twitter"></i></Link>
@@ -57,11 +71,11 @@ export function Footer() {
                   <div>
                       <h4 className="text-white font-bold mb-6">Categories</h4>
                       <ul className="space-y-3 text-sm">
-                          <li><Link href="/category" className="hover:text-primary transition">Living Room</Link></li>
-                          <li><Link href="/category" className="hover:text-primary transition">Bedroom</Link></li>
-                          <li><Link href="/category" className="hover:text-primary transition">Dining</Link></li>
-                          <li><Link href="/category" className="hover:text-primary transition">Office & Study</Link></li>
-                          <li><Link href="/category" className="hover:text-primary transition">Storage</Link></li>
+                          <li><Link href="/category?type=sofas" className="hover:text-primary transition">Living Room</Link></li>
+                          <li><Link href="/category?type=beds" className="hover:text-primary transition">Bedroom</Link></li>
+                          <li><Link href="/category?type=dining-sets" className="hover:text-primary transition">Dining</Link></li>
+                          <li><Link href="/category?type=office-tables" className="hover:text-primary transition">Office & Study</Link></li>
+                          <li><Link href="/category?type=cabinets" className="hover:text-primary transition">Storage</Link></li>
                       </ul>
                   </div>
                   
@@ -89,7 +103,7 @@ export function Footer() {
               </div>
               
               <div className="border-t border-gray-800 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center text-xs text-gray-500">
-                  <p>&copy; 2026 Primewood. All rights reserved.</p>
+                  <p>&copy; 2026 Primewood Industries Private Limited. All rights reserved.</p>
                   <div className="flex space-x-4 mt-4 md:mt-0">
                       <Link href="#" className="hover:text-white transition">Privacy Policy</Link>
                       <Link href="#" className="hover:text-white transition">Terms of Service</Link>

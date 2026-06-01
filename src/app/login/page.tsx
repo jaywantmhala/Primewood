@@ -25,9 +25,9 @@ export default function Login() {
   return (
     <div className="min-h-screen bg-gray-50 flex flex-col justify-center py-12 sm:px-6 lg:px-8">
       <div className="sm:mx-auto sm:w-full sm:max-w-md">
-        <Link href="/" className="flex items-center justify-center space-x-2 mb-6">
-            <span className="text-4xl font-bold tracking-tight text-secondary">Interio</span>
-            <span className="text-md font-medium text-gray-500 border-l border-gray-300 pl-2 mt-1">by Godrej</span>
+        <Link href="/" className="flex flex-col items-center justify-center mb-6">
+            <span className="text-4xl font-extrabold tracking-tight text-secondary">Primewood</span>
+            <span className="text-sm font-semibold text-primary tracking-widest uppercase mt-1">Industries</span>
         </Link>
         <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
           Sign in to your account

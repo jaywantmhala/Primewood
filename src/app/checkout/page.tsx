@@ -189,7 +189,7 @@ export default function Checkout() {
                     <i className="fas fa-check-circle"></i>
                 </div>
                 <h3 className="text-2xl font-bold text-gray-900 mb-2">Order Placed Successfully!</h3>
-                <p className="text-sm text-gray-500 mb-6">Thank you for shopping with Godrej Interio. Your delivery & assembly will be processed shortly.</p>
+                <p className="text-sm text-gray-500 mb-6">Thank you for shopping with Primewood Industries Private Limited. Your delivery & assembly will be processed shortly.</p>
                 <button onClick={() => router.push('/')} className="block w-full bg-primary hover:bg-red-700 text-white font-bold py-3 rounded-lg transition">
                   Back to Home
                 </button>
