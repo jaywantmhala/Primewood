@@ -86,7 +86,7 @@ export default function Home() {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
             {justArrivedProducts.map((p) => (
-              <ProductCard key={p.id} product={p} />
+              <ProductCard key={p.id} product={p} showPrice={false} />
             ))}
           </div>
           <div className="mt-8 text-center sm:hidden">
