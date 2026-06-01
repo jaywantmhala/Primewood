@@ -31,14 +31,14 @@ export default function Home() {
           <h2 className="text-2xl font-bold text-center mb-10 text-secondary">Shop By Category</h2>
           <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6">
             {[
-              { icon: "fa-couch", name: "Sofas" },
-              { icon: "fa-bed", name: "Beds" },
-              { icon: "fa-utensils", name: "Dining" },
-              { icon: "fa-door-closed", name: "Wardrobes" },
-              { icon: "fa-laptop-house", name: "Study Desks" },
-              { icon: "fa-shield-alt", name: "Lockers" },
+              { icon: "fa-couch", name: "Sofas", type: "sofas" },
+              { icon: "fa-bed", name: "Beds", type: "beds" },
+              { icon: "fa-utensils", name: "Dining", type: "dining-sets" },
+              { icon: "fa-door-closed", name: "Wardrobes", type: "almirahs" },
+              { icon: "fa-laptop-house", name: "Study Desks", type: "office-tables" },
+              { icon: "fa-shield-alt", name: "Lockers", type: "lockers" },
             ].map((cat, i) => (
-              <Link key={i} href="/category" className="group flex flex-col items-center">
+              <Link key={i} href={`/category?type=${cat.type}`} className="group flex flex-col items-center">
                 <div className="w-24 h-24 sm:w-32 sm:h-32 rounded-full bg-lightbg flex items-center justify-center mb-4 overflow-hidden border border-gray-100 group-hover:border-primary transition duration-300 group-hover:shadow-md">
                   <i className={`fas ${cat.icon} text-2xl sm:text-4xl text-gray-400 group-hover:text-primary transition duration-300 transform group-hover:scale-110`}></i>
                 </div>

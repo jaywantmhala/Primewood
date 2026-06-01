@@ -117,6 +117,7 @@ function CategoryContent() {
 
   const searchParams = useSearchParams();
   const type = searchParams.get("type") || "sofas";
+  const query = searchParams.get("q") || "";
 
   const isTables = type === "tables";
   const isBeanBags = type === "bean-bags";
@@ -244,6 +245,13 @@ function CategoryContent() {
 
 
   const filteredProducts = useMemo(() => {
+    if (query) {
+      return defaultProducts.filter(
+        p => p.name.toLowerCase().includes(query.toLowerCase()) || 
+             p.description.toLowerCase().includes(query.toLowerCase()) ||
+             p.category.toLowerCase().includes(query.toLowerCase())
+      );
+    }
     if (isTables) {
       let tables = defaultProducts.filter(p => p.category === "tables");
       if (activeTab === "Coffee Tables") {
@@ -507,7 +515,7 @@ function CategoryContent() {
       }
       return sofas;
     }
-  }, [isTables, isBeanBags, isCabinets, isChairs, isSoftFurnishing, isAlmirahs, isBeds, isMattresses, isBedroomTables, isBedroomChairs, isLockers, isDiningSets, isDiningTables, isDiningChairs, isDiningBenches, isDiningAccessories, isOfficeChairs, isOfficeTables, isModularKitchens, activeTab]);
+  }, [isTables, isBeanBags, isCabinets, isChairs, isSoftFurnishing, isAlmirahs, isBeds, isMattresses, isBedroomTables, isBedroomChairs, isLockers, isDiningSets, isDiningTables, isDiningChairs, isDiningBenches, isDiningAccessories, isOfficeChairs, isOfficeTables, isModularKitchens, activeTab, query]);
 
 
 
@@ -519,7 +527,15 @@ function CategoryContent() {
       <div className="container mx-auto px-4 md:px-8 py-6 flex-grow animate-in fade-in duration-500">
         
         {/* Breadcrumbs */}
-        {isTables ? (
+        {query ? (
+          <div className="text-xs text-gray-400 font-medium flex items-center space-x-1.5 mb-6">
+            <span>Home</span>
+            <span className="text-gray-300">/</span>
+            <span>Search</span>
+            <span className="text-gray-300">/</span>
+            <span className="text-gray-600 font-semibold">{query}</span>
+          </div>
+        ) : isTables ? (
           <div className="text-xs text-gray-400 font-medium flex items-center space-x-1.5 mb-6">
             <span>Home</span>
             <span className="text-gray-300">/</span>
@@ -724,70 +740,75 @@ function CategoryContent() {
         {/* Category Header */}
         <div className="text-center max-w-3xl mx-auto space-y-3 mb-8 px-4">
           <h1 className="text-2xl sm:text-4xl font-bold tracking-tight text-gray-900 flex flex-wrap items-center justify-center gap-2 sm:gap-3">
-            <span>{getCategoryName(type, activeTab)}</span>
+            <span>{query ? `Search Results for "${query}"` : getCategoryName(type, activeTab)}</span>
             <span className="text-sm font-normal text-gray-400 bg-gray-100 rounded-full px-3 py-1">
               {filteredProducts.length} Products
             </span>
           </h1>
           <p className="text-sm text-gray-500 leading-relaxed font-medium">
-            {isTables 
-              ? "Explore our gorgeous collection of designer coffee tables and sleek corner end tables, designed to elevate your living room decor and add functional utility to your home."
-              : isBeanBags
-                ? "Unwind in ultimate comfort with our collection of premium, durable bean bags, handcrafted floor pouffes, and elegant storage ottomans, designed for cozy living."
-                : isCabinets
-                  ? "Organize your living space elegantly with our premium collection of Books Shelves, designer Display Units, high-performance TV Units, and spacious Shoes Racks."
-                  : isChairs
-                    ? "Sit back and relax in absolute style with our curated collection of cozy Leisure Chairs, high-back Wing Chairs, and ergonomic Easy Chairs."
-                    : isBedroomTables
-                      ? "Discover our elegant collection of bedroom tables, including beautiful nightstands, bedside drawer tables, and premium vanity dressing tables with LED mirrors."
-                      : isBedroomChairs
-                        ? "Find the perfect seating with our selection of work-from-home study chairs and heavy-duty immersive RGB-lit gaming chairs designed for ultimate comfort."
-                        : isLockers
-                          ? "Secure your valuable items with our high-security home lockers, offering smart digital PIN keys, premium biometric fingerprint entry, and robust manual key vaults."
-                          : isDiningSets
-                            ? "Bring families together with our beautiful range of premium 4 seats, 6 seater, and luxury 8 seater dining sets, crafted for memorable dining experiences."
-                            : isDiningTables
-                              ? "Enhance your dining space with our exquisite collection of premium 4 seater glass tables, handcrafted solid walnut 6 seater tables, and luxury extendable mahogany 8 seater dining tables."
-                              : isDiningChairs
-                                ? "Dine in comfort and style with our gorgeous curated collection of premium upholstered fabric velvet dining chairs and natural solid wood dining chairs."
-                                  : isDiningBenches
-                                    ? "Add versatile and space-saving seating to your dining space with our exquisite collection of premium upholstered velvet benches and handcrafted oak slatted dining benches."
-                                    : isDiningAccessories
-                                      ? "Elevate your table setting with our premium collection of luxury woven cotton table mats and exquisite handcrafted linen table runners."
-                                      : isOfficeChairs
-                                        ? "Enhance your workspace productivity and comfort with our premium range of ergonomic work chairs and immersive carbon-fiber gaming chairs."
-                                        : isOfficeTables
-                                          ? "Design an inspiring and clutter-free workspace with our premium collection of solid wood study desks, smart work tables, and space-saving corner tables."
-                                          : isModularKitchens
-                                            ? "Cook in style with our premium collection of L-shaped, U-shaped, and straight modular kitchen sets, featuring robust water-resistant cabinetry and modern stove integrations."
-                                            : ""
+            {query 
+              ? `Showing search results for "${query}" found across all furniture categories.`
+              : (isTables 
+                  ? "Explore our gorgeous collection of designer coffee tables and sleek corner end tables, designed to elevate your living room decor and add functional utility to your home."
+                  : isBeanBags
+                    ? "Unwind in ultimate comfort with our collection of premium, durable bean bags, handcrafted floor pouffes, and elegant storage ottomans, designed for cozy living."
+                    : isCabinets
+                      ? "Organize your living space elegantly with our premium collection of Books Shelves, designer Display Units, high-performance TV Units, and spacious Shoes Racks."
+                      : isChairs
+                        ? "Sit back and relax in absolute style with our curated collection of cozy Leisure Chairs, high-back Wing Chairs, and ergonomic Easy Chairs."
+                        : isBedroomTables
+                          ? "Discover our elegant collection of bedroom tables, including beautiful nightstands, bedside drawer tables, and premium vanity dressing tables with LED mirrors."
+                          : isBedroomChairs
+                            ? "Find the perfect seating with our selection of work-from-home study chairs and heavy-duty immersive RGB-lit gaming chairs designed for ultimate comfort."
+                            : isLockers
+                              ? "Secure your valuable items with our high-security home lockers, offering smart digital PIN keys, premium biometric fingerprint entry, and robust manual key vaults."
+                              : isDiningSets
+                                ? "Bring families together with our beautiful range of premium 4 seats, 6 seater, and luxury 8 seater dining sets, crafted for memorable dining experiences."
+                                : isDiningTables
+                                  ? "Enhance your dining space with our exquisite collection of premium 4 seater glass tables, handcrafted solid walnut 6 seater tables, and luxury extendable mahogany 8 seater dining tables."
+                                  : isDiningChairs
+                                    ? "Dine in comfort and style with our gorgeous curated collection of premium upholstered fabric velvet dining chairs and natural solid wood dining chairs."
+                                      : isDiningBenches
+                                        ? "Add versatile and space-saving seating to your dining space with our exquisite collection of premium upholstered velvet benches and handcrafted oak slatted dining benches."
+                                        : isDiningAccessories
+                                          ? "Elevate your table setting with our premium collection of luxury woven cotton table mats and exquisite handcrafted linen table runners."
+                                          : isOfficeChairs
+                                            ? "Enhance your workspace productivity and comfort with our premium range of ergonomic work chairs and immersive carbon-fiber gaming chairs."
+                                            : isOfficeTables
+                                              ? "Design an inspiring and clutter-free workspace with our premium collection of solid wood study desks, smart work tables, and space-saving corner tables."
+                                              : isModularKitchens
+                                                ? "Cook in style with our premium collection of L-shaped, U-shaped, and straight modular kitchen sets, featuring robust water-resistant cabinetry and modern stove integrations."
+                                                : ""
+                )
             }
-            {isSoftFurnishing && "Decorate your home with our luxury range of premium, organic support Pillows, square Cusion Covers, cozy knitted Sofa Throws, and plush wool Rugs."}
-            {isAlmirahs && "Organize your bedroom beautifully with our premium selection of heavy-duty Steel Almirahs, elegant Wooden Wardrobes, spacious 2, 3, or 4 Door Wardrobes, and sleek modern Sliding Wardrobes."}
-            {isBeds && "Experience sleep at its finest with our curated selection of premium master King Beds, comfortable Queen Beds, space-saving Single Beds, motorized Homecare Beds, handcrafted Wooden Beds, sleek Metal Beds, and luxury Double Beds."}
-            {isMattresses && "Discover ultimate sleep luxury with our premium range of complete Bed and Mattress Sets, orthopedic support mattresses, contouring memory foam, natural organic latex, and pocket spring mattresses."}
-            {!isTables && !isBeanBags && !isCabinets && !isChairs && !isSoftFurnishing && !isAlmirahs && !isBeds && !isMattresses && !isBedroomTables && !isBedroomChairs && !isLockers && !isDiningSets && !isDiningTables && !isDiningChairs && !isDiningBenches && !isDiningAccessories && !isOfficeChairs && !isOfficeTables && !isModularKitchens && "A great sofa is the heart of your home. That's why we've designed our collection for unwinding, connecting or working - keeping you comfortable whatever your day holds. Choose from a variety of configurations and finishes to find the perfect style for you."}
+            {!query && isSoftFurnishing && "Decorate your home with our luxury range of premium, organic support Pillows, square Cusion Covers, cozy knitted Sofa Throws, and plush wool Rugs."}
+            {!query && isAlmirahs && "Organize your bedroom beautifully with our premium selection of heavy-duty Steel Almirahs, elegant Wooden Wardrobes, spacious 2, 3, or 4 Door Wardrobes, and sleek modern Sliding Wardrobes."}
+            {!query && isBeds && "Experience sleep at its finest with our curated selection of premium master King Beds, comfortable Queen Beds, space-saving Single Beds, motorized Homecare Beds, handcrafted Wooden Beds, sleek Metal Beds, and luxury Double Beds."}
+            {!query && isMattresses && "Discover ultimate sleep luxury with our premium range of complete Bed and Mattress Sets, orthopedic support mattresses, contouring memory foam, natural organic latex, and pocket spring mattresses."}
+            {!query && !isTables && !isBeanBags && !isCabinets && !isChairs && !isSoftFurnishing && !isAlmirahs && !isBeds && !isMattresses && !isBedroomTables && !isBedroomChairs && !isLockers && !isDiningSets && !isDiningTables && !isDiningChairs && !isDiningBenches && !isDiningAccessories && !isOfficeChairs && !isOfficeTables && !isModularKitchens && "A great sofa is the heart of your home. That's why we've designed our collection for unwinding, connecting or working - keeping you comfortable whatever your day holds. Choose from a variety of configurations and finishes to find the perfect style for you."}
           </p>
         </div>
 
         {/* Horizontal Subcategory Pill Tabs */}
-        <div className="pt-3">
-          <div className="flex overflow-x-auto py-2 -mx-4 px-4 md:mx-0 md:px-0 space-x-3 scrollbar-hide justify-start sm:justify-center">
-            {subCategories.map((tab) => (
-              <button
-                key={tab}
-                onClick={() => setActiveTab(tab)}
-                className={`flex-shrink-0 px-6 py-2.5 rounded-md text-sm font-semibold border transition-all duration-200 ${
-                  activeTab === tab
-                    ? "bg-[#f5ebd9] border-[#e0cbab] text-[#78593a]"
-                    : "bg-white border-gray-200 text-gray-700 hover:bg-gray-50"
-                }`}
-              >
-                {tab}
-              </button>
-            ))}
+        {!query && (
+          <div className="pt-3">
+            <div className="flex overflow-x-auto py-2 -mx-4 px-4 md:mx-0 md:px-0 space-x-3 scrollbar-hide justify-start sm:justify-center">
+              {subCategories.map((tab) => (
+                <button
+                  key={tab}
+                  onClick={() => setActiveTab(tab)}
+                  className={`flex-shrink-0 px-6 py-2.5 rounded-md text-sm font-semibold border transition-all duration-200 ${
+                    activeTab === tab
+                      ? "bg-[#f5ebd9] border-[#e0cbab] text-[#78593a]"
+                      : "bg-white border-gray-200 text-gray-700 hover:bg-gray-50"
+                  }`}
+                >
+                  {tab}
+                </button>
+              ))}
+            </div>
           </div>
-        </div>
+        )}
 
 
 
