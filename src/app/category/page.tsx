@@ -5,7 +5,7 @@ import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { ProductCard } from "@/components/ProductCard";
 import { defaultProducts } from "@/data/products";
-import { useToast } from "@/context/ToastContext";
+
 
 export default function Category() {
   return (
@@ -114,7 +114,7 @@ function getCategoryName(type: string, activeTab: string): string {
 }
 
 function CategoryContent() {
-  const { showToast } = useToast();
+
   const searchParams = useSearchParams();
   const type = searchParams.get("type") || "sofas";
 
@@ -241,8 +241,7 @@ function CategoryContent() {
     }
   }, [type, searchParams, subCategories]);
 
-  const [pincode, setPincode] = useState("");
-  const [isCompareActive, setIsCompareActive] = useState(false);
+
 
   const filteredProducts = useMemo(() => {
     if (isTables) {
@@ -510,13 +509,7 @@ function CategoryContent() {
     }
   }, [isTables, isBeanBags, isCabinets, isChairs, isSoftFurnishing, isAlmirahs, isBeds, isMattresses, isBedroomTables, isBedroomChairs, isLockers, isDiningSets, isDiningTables, isDiningChairs, isDiningBenches, isDiningAccessories, isOfficeChairs, isOfficeTables, isModularKitchens, activeTab]);
 
-  const handleCheckPincode = () => {
-    if (!pincode.trim() || pincode.trim().length < 6) {
-      showToast("Please enter a valid 6-digit pincode", "error");
-      return;
-    }
-    showToast(`Delivery available for pincode ${pincode}`, "success");
-  };
+
 
   return (
     <>
@@ -778,7 +771,7 @@ function CategoryContent() {
         </div>
 
         {/* Horizontal Subcategory Pill Tabs */}
-        <div className="border-t border-gray-100 pt-3">
+        <div className="pt-3">
           <div className="flex overflow-x-auto py-2 -mx-4 px-4 md:mx-0 md:px-0 space-x-3 scrollbar-hide justify-start sm:justify-center">
             {subCategories.map((tab) => (
               <button
@@ -796,75 +789,7 @@ function CategoryContent() {
           </div>
         </div>
 
-        {/* Horizontal Filter Bar */}
-        <div className="border-y border-gray-200 py-4 flex flex-col md:flex-row md:items-center justify-between gap-4 mt-4">
-          <div className="flex flex-wrap items-center gap-3">
-            {/* Color Dropdown */}
-            <div className="relative">
-              <button className="flex items-center space-x-1.5 border border-gray-300 hover:border-gray-400 rounded px-4 py-1.5 text-sm font-semibold text-gray-700 bg-white">
-                <span>Color</span>
-                <svg className="w-3.5 h-3.5 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" /></svg>
-              </button>
-            </div>
 
-            {/* Upholstery Material Dropdown */}
-            <div className="relative">
-              <button className="flex items-center space-x-1.5 border border-gray-300 hover:border-gray-400 rounded px-4 py-1.5 text-sm font-semibold text-gray-700 bg-white">
-                <span>{isTables ? "Material" : (isBeanBags ? "Material" : (isCabinets ? "Material" : (isChairs ? "Material" : "Upholstery Material")))}</span>
-                <svg className="w-3.5 h-3.5 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" /></svg>
-              </button>
-            </div>
-
-            {/* All Filters */}
-            <button className="flex items-center space-x-1.5 hover:text-primary text-sm font-semibold text-gray-700 py-1.5 px-2">
-              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4" /></svg>
-              <span>All filters</span>
-            </button>
-          </div>
-
-          {/* Pincode and Check */}
-          <div className="flex items-center space-x-2">
-            <div className="relative max-w-[200px]">
-              <input 
-                type="text" 
-                placeholder="pincode" 
-                value={pincode}
-                onChange={(e) => setPincode(e.target.value)}
-                className="w-full border-b border-gray-300 focus:border-primary pb-1 outline-none text-sm placeholder-gray-400"
-              />
-            </div>
-            <button 
-              onClick={handleCheckPincode}
-              className="text-sm font-bold text-gray-800 border-b-2 border-gray-800 hover:text-primary hover:border-primary pb-0.5 transition-colors"
-            >
-              Check
-            </button>
-          </div>
-
-          {/* Compare and Sort */}
-          <div className="flex flex-wrap items-center gap-4">
-            {/* Compare Toggle */}
-            <div className="flex items-center space-x-2 border border-gray-200 rounded px-4 py-1.5 bg-gray-50/50">
-              <span className="text-sm font-semibold text-gray-700">Compare</span>
-              <button 
-                onClick={() => setIsCompareActive(!isCompareActive)}
-                className={`w-9 h-5 flex items-center rounded-full p-0.5 cursor-pointer transition-colors duration-200 ease-in-out ${isCompareActive ? 'bg-primary' : 'bg-gray-300'}`}
-              >
-                <div className={`bg-white w-4 h-4 rounded-full shadow-md transform transition-transform duration-200 ease-in-out ${isCompareActive ? 'translate-x-4' : 'translate-x-0'}`} />
-              </button>
-            </div>
-
-            {/* Sort by dropdown */}
-            <div className="flex items-center space-x-1">
-              <span className="text-xs text-gray-400 font-medium">Sort by</span>
-              <select className="border border-gray-300 hover:border-gray-400 rounded px-4 py-1.5 text-sm font-semibold text-gray-700 bg-white focus:outline-none focus:border-primary">
-                <option>Best Match</option>
-                <option>Popularity</option>
-                <option>Newest Arrivals</option>
-              </select>
-            </div>
-          </div>
-        </div>
 
         {/* Product Cards Grid */}
         <div className="py-8">
