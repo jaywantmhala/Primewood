@@ -42,7 +42,7 @@ export default function ProductDetail() {
       <div className="container mx-auto px-4 md:px-8 py-10 flex-grow">
         <div className="flex flex-col md:flex-row gap-10">
           <div className="w-full md:w-1/2">
-            <div className="bg-gray-50 rounded-2xl p-8 border border-gray-100 flex items-center justify-center h-[500px]">
+            <div className="bg-gray-50 rounded-2xl p-8 border border-gray-100 flex items-center justify-center h-[300px] sm:h-[400px] md:h-[500px]">
               <img src={currentImage} alt={product.name} className="max-w-full max-h-full object-contain mix-blend-multiply" />
             </div>
           </div>

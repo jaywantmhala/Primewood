@@ -14,13 +14,13 @@ export default function Home() {
           <img src="/images/hero.png" alt="Modern Living Room" className="w-full h-full object-cover object-center filter brightness-[0.85]" />
         </div>
         <div className="container mx-auto px-4 md:px-8 relative z-10">
-          <div className="max-w-xl bg-white/90 backdrop-blur-sm p-10 rounded-2xl shadow-xl transform transition hover:scale-[1.02] duration-300">
+          <div className="max-w-xl bg-white/90 backdrop-blur-sm p-6 sm:p-10 rounded-2xl shadow-xl transform transition hover:scale-[1.02] duration-300">
             <span className="text-primary font-bold tracking-wider uppercase text-sm mb-2 block">New Collection</span>
-            <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4 leading-tight">Elevate Your Living Space</h1>
-            <p className="text-gray-600 mb-8 text-lg">Discover our premium range of intelligently designed furniture for homes and offices that blend comfort with modern aesthetics.</p>
-            <div className="flex space-x-4">
-              <Link href="#products" className="bg-primary hover:bg-red-700 text-white px-8 py-3 rounded-full font-semibold transition shadow-lg shadow-red-500/30">Shop Now</Link>
-              <Link href="/category" className="bg-transparent border border-gray-300 hover:border-gray-800 text-gray-800 px-8 py-3 rounded-full font-semibold transition">Explore Stores</Link>
+            <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-4 leading-tight">Elevate Your Living Space</h1>
+            <p className="text-gray-600 mb-6 sm:mb-8 text-base sm:text-lg">Discover our premium range of intelligently designed furniture for homes and offices that blend comfort with modern aesthetics.</p>
+            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
+              <Link href="#products" className="bg-primary hover:bg-red-700 text-white px-6 sm:px-8 py-2.5 sm:py-3 rounded-full font-semibold transition shadow-lg shadow-red-500/30 text-center">Shop Now</Link>
+              <Link href="/category" className="bg-transparent border border-gray-300 hover:border-gray-800 text-gray-800 px-6 sm:px-8 py-2.5 sm:py-3 rounded-full font-semibold transition text-center">Explore Stores</Link>
             </div>
           </div>
         </div>
@@ -39,8 +39,8 @@ export default function Home() {
               { icon: "fa-shield-alt", name: "Lockers" },
             ].map((cat, i) => (
               <Link key={i} href="/category" className="group flex flex-col items-center">
-                <div className="w-32 h-32 rounded-full bg-lightbg flex items-center justify-center mb-4 overflow-hidden border border-gray-100 group-hover:border-primary transition duration-300 group-hover:shadow-md">
-                  <i className={`fas ${cat.icon} text-4xl text-gray-400 group-hover:text-primary transition duration-300 transform group-hover:scale-110`}></i>
+                <div className="w-24 h-24 sm:w-32 sm:h-32 rounded-full bg-lightbg flex items-center justify-center mb-4 overflow-hidden border border-gray-100 group-hover:border-primary transition duration-300 group-hover:shadow-md">
+                  <i className={`fas ${cat.icon} text-2xl sm:text-4xl text-gray-400 group-hover:text-primary transition duration-300 transform group-hover:scale-110`}></i>
                 </div>
                 <span className="font-medium text-gray-700 group-hover:text-primary transition">{cat.name}</span>
               </Link>

@@ -722,10 +722,10 @@ function CategoryContent() {
         )}
 
         {/* Category Header */}
-        <div className="text-center max-w-3xl mx-auto space-y-3 mb-8">
-          <h1 className="text-4xl font-bold tracking-tight text-gray-900 flex items-center justify-center space-x-3">
+        <div className="text-center max-w-3xl mx-auto space-y-3 mb-8 px-4">
+          <h1 className="text-2xl sm:text-4xl font-bold tracking-tight text-gray-900 flex flex-wrap items-center justify-center gap-2 sm:gap-3">
             <span>{getCategoryName(type, activeTab)}</span>
-            <span className="text-sm font-normal text-gray-400 bg-gray-100 rounded-full px-3 py-1 mt-1">
+            <span className="text-sm font-normal text-gray-400 bg-gray-100 rounded-full px-3 py-1">
               {filteredProducts.length} Products
             </span>
           </h1>

@@ -306,7 +306,7 @@ export function Header() {
 
   return (
     <>
-      <div className="bg-brandblue text-white text-xs py-2 px-4 md:px-8 flex justify-between items-center">
+      <div className="bg-brandblue text-white text-xs py-2 px-4 md:px-8 hidden md:flex justify-between items-center">
         <div className="flex space-x-4">
           <Link href="#" className="hover:text-primary transition opacity-90">Become a dealer</Link>
           <Link href="#" className="hover:text-primary transition opacity-90">Store locator</Link>
@@ -322,7 +322,7 @@ export function Header() {
       <header className="sticky top-0 z-50 bg-white shadow-sm">
         <div className="container mx-auto px-4 md:px-8 py-4 flex justify-between items-center">
           <Link href="/" className="flex items-center space-x-2">
-            <span className="text-3xl font-extrabold tracking-tight text-secondary">Primewood</span>
+            <span className="text-2xl sm:text-3xl font-extrabold tracking-tight text-secondary">Primewood</span>
           </Link>
 
           <div className="hidden md:flex flex-1 max-w-xl mx-8 relative">
@@ -332,29 +332,29 @@ export function Header() {
             </button>
           </div>
 
-          <div className="flex items-center space-x-6">
+          <div className="flex items-center space-x-3 sm:space-x-6">
             {user ? (
               <Link href="#" onClick={handleLogout} className="text-gray-600 hover:text-primary flex flex-col items-center group transition">
                 <i className="far fa-user text-xl text-primary group-hover:scale-110 duration-200"></i>
-                <span className="text-xs mt-1 font-semibold text-primary">Hi, {user}</span>
+                <span className="text-xs mt-1 font-semibold text-primary hidden sm:block">Hi, {user}</span>
               </Link>
             ) : (
               <Link href="/login" className="text-gray-600 hover:text-primary flex flex-col items-center group transition">
                 <i className="far fa-user text-xl group-hover:scale-110 duration-200"></i>
-                <span className="text-xs mt-1 font-medium">Log In</span>
+                <span className="text-xs mt-1 font-medium hidden sm:block">Log In</span>
               </Link>
             )}
             
             <Link href="#" className="text-gray-600 hover:text-primary flex flex-col items-center group transition">
               <i className="far fa-heart text-xl group-hover:scale-110 duration-200"></i>
-              <span className="text-xs mt-1 font-medium">Wishlist</span>
+              <span className="text-xs mt-1 font-medium hidden sm:block">Wishlist</span>
             </Link>
             <Link href="/cart" className="text-gray-600 hover:text-primary flex flex-col items-center group transition relative">
               <i className="fas fa-shopping-cart text-xl group-hover:scale-110 duration-200"></i>
               {cartCount > 0 && (
                 <span className="absolute -top-2 -right-2 bg-primary text-white text-[10px] font-bold h-4 w-4 rounded-full flex items-center justify-center">{cartCount}</span>
               )}
-              <span className="text-xs mt-1 font-medium">Cart</span>
+              <span className="text-xs mt-1 font-medium hidden sm:block">Cart</span>
             </Link>
             
             {/* Burger Menu Button */}
